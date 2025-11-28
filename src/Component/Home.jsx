@@ -3,6 +3,8 @@ import React, { useRef, useEffect, useState } from "react";
 import axios from "axios";
 
 const Home = () => {
+  const BACK_URL = import.meta.env.VITE_BACK_URL;
+  console.log("BACK_URL = ", BACK_URL);
   const [animeD, setAnimeD] = useState([]);
     useEffect(()=>{
       const fetchdata=async function(){
@@ -18,7 +20,6 @@ const Home = () => {
       }
       fetchdata();
     },[])
-   const BACK_URL = import.meta.env.VITE_BACK_URL;
 
   return (
     <div className={`relative  shadow-2xl `}>
