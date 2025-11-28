@@ -18,7 +18,7 @@ const Home = () => {
       }
       fetchdata();
     },[])
-  
+   const BACK_URL = import.meta.env.VITE_BACK_URL;
 
   return (
     <div className={`relative  shadow-2xl `}>
