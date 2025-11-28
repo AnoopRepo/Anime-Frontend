@@ -33,7 +33,7 @@ const Home = () => {
       <div className="w-[40%] p-5  flex items-center justify-center bg-gradient-to-b from-black/40 to-black/10">
         <img
           data-layer="fg" 
-          src={val.imageUrl}
+          src={`https://authentic-charisma-production-1957.up.railway.app/${val.imageUrl}`}
           alt={val.name}
           className="w-full rounded-xl object-cover pointer-events-none  will-change-transform"
           style={{ transformStyle: "preserve-3d" }}
