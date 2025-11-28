@@ -43,7 +43,7 @@ const Home = () => {
       {/* Right content area */}
       <div className="w-[60%] p-6  text-white flex flex-col gap-3">
         <h2 className="text-4xl font-bold tracking-wide ">
-          {val.name}
+          <a href={val.link}>{val.name}</a>
         </h2>
 
         <div className="text-sm text-white/80">
