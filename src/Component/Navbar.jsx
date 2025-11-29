@@ -33,26 +33,27 @@ const Navbar = () => {
           }
     }
     
-    useEffect(()=>{
-        const nav=document.querySelector(".navbar");
-        const onScroll=()=>{
-            
-            if(window.scrollY>85){
-                nav.classList.add("backdrop-blur-md");
-            }else{
-                nav.classList.remove("backdrop-blur-md");
-            }
-        }
-        window.addEventListener("scroll",()=>{
-            setTimeout(onScroll,-1000);
-        });
-        return () => window.removeEventListener("scroll", onScroll);
-    },[])
+   useEffect(() => {
+  const nav = document.querySelector(".navbar");
+
+  const onScroll = () => {
+    if (window.scrollY > 85) {
+      nav.classList.add("backdrop-blur-md", "bg-black/30", "border-b", "border-white/20");
+    } else {
+      nav.classList.remove("backdrop-blur-md", "bg-black/30", "border-b", "border-white/20");
+    }
+  };
+
+  window.addEventListener("scroll", onScroll);
+
+  return () => window.removeEventListener("scroll", onScroll);
+}, []);
+
 
   return (
    
         <div className="navbar fixed top-0 left-0 w-full z-50 
-                bg-black/30 backdrop-blur-sm 
+                bg-transparent
                 border-b border-white/10 
                 flex items-center justify-between px-8 py-4">
 
