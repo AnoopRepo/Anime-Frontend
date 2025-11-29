@@ -8,11 +8,12 @@ import axios from 'axios'
 
 const Navbar = () => {
 
+  const BACK_URL = import.meta.env.VITE_BACK_URL;
   const [inputD, setInputD] = useState([])
   
   const Handleinput=async(val)=>{
          const value = val.target.value;
-        
+        console.log(val.target.value);
          
   // 🔥 If input empty after backspace → clear search list
           if (value.trim() === "") {
@@ -22,7 +23,7 @@ const Navbar = () => {
 
           try {
             const data  = await axios.get(
-              `http://localhost:8080/Admin/search/${value}`
+              `${BACK_URL}/${value}`
             );
             setInputD(data.data);
             console.log(inputD);
