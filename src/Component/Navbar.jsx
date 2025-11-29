@@ -10,7 +10,8 @@ const Navbar = () => {
 
   const BACK_URL = import.meta.env.VITE_BACK_URL;
   const [inputD, setInputD] = useState([])
-  
+  const [mobileMenu, setMobileMenu] = useState(false);
+
   const Handleinput=async(val)=>{
          const value = val.target.value;
         console.log(val.target.value);
@@ -114,9 +115,36 @@ const Navbar = () => {
   </div>
 
   {/* Mobile Menu Icon */}
-  <div className="sm:hidden text-3xl text-white cursor-pointer">
-    <i className="ri-menu-3-line"></i>
+  <div 
+  className="sm:hidden font-bold text-2xl cursor-pointer text-white"
+  onClick={() => setMobileMenu(!mobileMenu)}>
+      <i className={mobileMenu ? "ri-close-line" : "ri-menu-3-line"}></i>
   </div>
+  {mobileMenu && (
+  <div className="sm:hidden absolute top-full left-0 w-full 
+                  bg-black text-white flex flex-col gap-4 
+                  p-6 border-b border-white/20">
+
+    <Link onClick={() => setMobileMenu(false)} to="/" className="text-lg">
+      Home
+    </Link>
+
+    <Link onClick={() => setMobileMenu(false)} to="/about" className="text-lg">
+      About
+    </Link>
+
+    <Link onClick={() => setMobileMenu(false)} to="/contact" className="text-lg">
+      Contact
+    </Link>
+
+    <Link onClick={() => setMobileMenu(false)} to="/project" className="text-lg">
+      Project
+    </Link>
+
+  </div>
+)}
+
+
 </div>
 
    
