@@ -50,47 +50,73 @@ const Navbar = () => {
 
   return (
    
-        <div className='navbar fixed z-9 w-full bg-linear-to-r/longer from-red-300 to-sky-600 bg-clip-text text-transparent h-[5%] flex items-center justify-between p-10 '>
-      <div className='logo flex gap-5 items-center font-serif font-bold text-2xl'> 
-        <div className="img w-10 h-15 rounded-full overflow-hidden ">
-          <img className='object-fit ' src={l1} alt="" />
-        </div>
-        <div className="name bg-gradiant"> Anime Blog Site </div>
-      </div>
-     
-       <div className='sm:flex  hidden gap-5'> 
-        <div className='  space-x-5 font-semibold text-xl justify-around'>
-          <Link to="/">Home</Link>
-        <Link to="/about">About</Link>
-        <Link to="/contact">Contact</Link>
-        <Link to="/project">Project</Link>
-        </div>
-        <div className='relative'>
-          <input 
-        onChange={Handleinput}
-        onFocus={() => {
-          document.querySelector(".box")?.classList.remove("hidden");
-        }}
-        onBlur={() => {
-          document.querySelector(".box")?.classList.add("hidden");
-        }}
-        onInput={() => {
-          document.querySelector(".box")?.classList.remove("hidden");
-        }}
-        
-         type="text" placeholder='Search here ....' className='bg-transparent text-white rounded py-1 px-2 outline-none focus:ring-2 focus:ring-emerald-500'/>
-         <div className='box hidden absolute  rounded max-h-100 shadow-lg z-50'>
-          {inputD.map((val,idx)=>{
-          return <div id={idx} className='w-full p-2  h-10 bg-black text-white'>{val.name}</div>
-         })}
-         </div>
-        </div>
-        </div>
-        <div className='sm:hidden  font-bold text-2xl '>
-            <i className="ri-menu-3-line"></i>
-        </div>
-      
+        <div className="navbar fixed top-0 left-0 w-full z-50 
+                bg-black/30 backdrop-blur-sm 
+                border-b border-white/10 
+                flex items-center justify-between px-8 py-4">
+
+  {/* Logo Section */}
+  <div className="flex gap-4 items-center font-serif font-bold text-2xl">
+    <div className="w-12 h-12 rounded-full overflow-hidden shadow-md shadow-fuchsia-500/30">
+      <img className="w-full h-full object-cover" src={l1} alt="Logo" />
     </div>
+
+    <div className="bg-gradient-to-r from-fuchsia-300 to-sky-400 
+                    bg-clip-text text-transparent tracking-wide">
+      Anime Blog Site
+    </div>
+  </div>
+
+  {/* Desktop Menu */}
+  <div className="hidden sm:flex items-center gap-8">
+
+    {/* Links */}
+    <div className="space-x-6 font-semibold text-lg text-white/90">
+      <Link className="hover:text-fuchsia-400 transition" to="/">Home</Link>
+      <Link className="hover:text-fuchsia-400 transition" to="/about">About</Link>
+      <Link className="hover:text-fuchsia-400 transition" to="/contact">Contact</Link>
+      <Link className="hover:text-fuchsia-400 transition" to="/project">Project</Link>
+    </div>
+
+    {/* Search Box */}
+    <div className="relative">
+      <input
+        onChange={Handleinput}
+        onFocus={() => document.querySelector(".box")?.classList.remove("hidden")}
+        onBlur={() => document.querySelector(".box")?.classList.add("hidden")}
+        onInput={() => document.querySelector(".box")?.classList.remove("hidden")}
+        type="text"
+        placeholder="Search here..."
+        className="bg-white/10 text-white border border-white/20
+                   rounded-xl px-3 py-2 outline-none
+                   focus:ring-2 focus:ring-fuchsia-500 
+                   shadow-inner placeholder:text-white/50"
+      />
+
+      {/* Search Results Dropdown (your existing logic, only styled) */}
+      <div className="box hidden absolute left-0 mt-2 w-60 
+                      bg-black/80 backdrop-blur-lg 
+                      border border-white/10 rounded-lg 
+                      max-h-60 overflow-y-auto shadow-xl">
+        {inputD.map((val, idx) => (
+          <div
+            key={idx}
+            className="px-4 py-2 text-white cursor-pointer 
+                       hover:bg-white/10 transition"
+          >
+            {val.name}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  {/* Mobile Menu Icon */}
+  <div className="sm:hidden text-3xl text-white cursor-pointer">
+    <i className="ri-menu-3-line"></i>
+  </div>
+</div>
+
    
   )
 }
