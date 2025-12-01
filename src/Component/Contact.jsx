@@ -1,6 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
+import axios from 'axios'
 
 const Contact = () => {
+  const BACK_URL = import.meta.env.VITE_BACK_URL;
+  const [emailService, setEmailService] = useState([])
+
+  const emailCall=async function(){
+    let email=document.querySelector("#email");
+    let message=document.querySelector("#message");
+    setEmailService({email:email.tagert.value , message : message.tagert.value})
+   try {
+     const sendData=await axios.put(`${BACK_URL}/email/${emailService}`)
+     console.log(emailService);
+   } catch (error) {
+    alert(error);
+    console.log(error);
+   }
+  }
   return (
     <div className="min-h-screen w-full bg-gradient-to-b from-black to-gray-900 text-white px-6 py-16 flex flex-col items-center">
         {/* Header */}
@@ -30,7 +46,12 @@ const Contact = () => {
 
 
         {/* Right Form */}
-        <form className="bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-2xl shadow-xl hover:shadow-purple-500/20 transition-all space-y-5">
+        <form
+        onSubmit={(e)=>{
+          e.preventDefault();
+          emailCall();
+        }}
+         className="bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-2xl shadow-xl hover:shadow-purple-500/20 transition-all space-y-5">
         <div>
         <label className="block mb-1 text-gray-300">Your Name</label>
         <input
@@ -45,6 +66,7 @@ const Contact = () => {
         <label className="block mb-1 text-gray-300">Email Address</label>
         <input
         type="email"
+        id="email"
         className="w-full rounded-lg px-3 py-2 bg-black/30 text-white border border-white/20 focus:outline-none focus:ring-2 focus:ring-purple-500"
         placeholder="Enter your email"
         />
@@ -55,6 +77,7 @@ const Contact = () => {
         <label className="block mb-1 text-gray-300">Message</label>
         <textarea
         rows="5"
+        id='message'
         className="w-full rounded-lg px-3 py-2 bg-black/30 text-white border border-white/20 focus:outline-none focus:ring-2 focus:ring-emerald-500"
         placeholder="Write your message..."
         />
