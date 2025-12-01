@@ -137,8 +137,8 @@ const Navbar = () => {
       Contact
     </Link>
 
-    <Link onClick={() => setMobileMenu(false)} to="/project" className="text-lg">
-      Project
+    <Link onClick={() => setMobileMenu(false)} to="/Admine" className="text-lg">
+      Admin
     </Link>
 
   </div>

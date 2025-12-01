@@ -93,7 +93,7 @@ const Admin = ({className=""}) => {
   return (
     <div className='bg-black flex  items-center  w-full h-full overflow-hidden ' >
         <div 
-        className='form  relative  h-full flex justify-center items-center w-1/2 '>            
+        className='form  relative  h-full flex justify-center items-center w-full '>            
             <form onSubmit={(e)=>{
                 console.log("gaya bhai....1")
                 e.preventDefault;
@@ -153,13 +153,7 @@ const Admin = ({className=""}) => {
                </div>
             </form>
         </div>
-        <div
-         ref={containerRef}
-         className={`h-full w-1/2 bg-white ${className}`}>
-            <img
-             data-layer="fg"
-            src={ds} alt="" className='w-full h-full object-contain p-15 rounded  '/>
-        </div>      
+            
     </div>
   )
 }
