@@ -78,7 +78,7 @@ const Navbar = () => {
       <Link className="hover:text-fuchsia-400 transition" to="/">Home</Link>
       <Link className="hover:text-fuchsia-400 transition" to="/about">About</Link>
       <Link className="hover:text-fuchsia-400 transition" to="/contact">Contact</Link>
-      <Link className="hover:text-fuchsia-400 transition" to="/project">Project</Link>
+      <Link className="hover:text-fuchsia-400 transition" to="/Admine">Admin</Link>
     </div>
 
     {/* Search Box */}
