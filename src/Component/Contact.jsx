@@ -7,11 +7,12 @@ const Contact = () => {
 
   const emailCall=async function(){
     let email=document.querySelector("#email");
+    let name=document.querySelector("#name");
     let message=document.querySelector("#message");
-    setEmailService({email:email.tagert.value , message : message.tagert.value})
+    setEmailService({name:name.value ,email:email.value , message : message.value})
+    console.log(emailService);
    try {
-     const sendData=await axios.put(`${BACK_URL}/email/${emailService}`)
-     console.log(emailService);
+     const sendData=await axios.post(`${BACK_URL}/Admin/email`,emailService)
    } catch (error) {
     alert(error);
     console.log(error);
@@ -53,9 +54,10 @@ const Contact = () => {
         }}
          className="bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-2xl shadow-xl hover:shadow-purple-500/20 transition-all space-y-5">
         <div>
-        <label className="block mb-1 text-gray-300">Your Name</label>
+        <label  className="block mb-1 text-gray-300">Your Name</label>
         <input
         type="text"
+        id='name'
         className="w-full rounded-lg px-3 py-2 bg-black/30 text-white border border-white/20 focus:outline-none focus:ring-2 focus:ring-cyan-500"
         placeholder="Enter your name"
         />
