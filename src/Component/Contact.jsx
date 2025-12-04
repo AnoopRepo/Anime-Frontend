@@ -12,7 +12,7 @@ const Contact = () => {
     setEmailService({name:name.value ,email:email.value , message : message.value})
     console.log(emailService);
    try {
-     const sendData=await axios.post(`${BACK_URL}/Admin/email`,emailService)
+     const sendData=await axios.post("http://localhost:8080/Admin/email",emailService)
    } catch (error) {
     alert(error);
     console.log(error);
