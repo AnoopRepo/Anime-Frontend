@@ -11,24 +11,21 @@ const Navbar = () => {
   const BACK_URL = import.meta.env.VITE_BACK_URL;
   const [inputD, setInputD] = useState([])
   const [mobileMenu, setMobileMenu] = useState(false);
+  const [showBox, setShowBox] = useState(false);
+
 
   const Handleinput=async(val)=>{
-         const value = val.target.value;
+         const query = val.target.value;
         console.log(val.target.value);
-         
-  // 🔥 If input empty after backspace → clear search list
-          if (value.trim() === "") {
+          if (query.trim() === "") {
             setInputD([]);  // ya koi default message
             return;
           }
 
           try {
-            const data  = await axios.get(
-              `${BACK_URL}/${value}`
-            );
+            // const data  = await axios.get(`http://localhost:8080/Admin/${query}`);
+            const data  = await axios.get(`${BACK_URL}/${query}`);
             setInputD(data.data);
-            console.log(inputD);
-
           } catch (err) {
             console.log(err);
           }
@@ -81,36 +78,41 @@ const Navbar = () => {
       <Link className="hover:text-fuchsia-400 transition" to="/Admine">Admin</Link>
     </div>
 
-    {/* Search Box */}
+    
     <div className="relative">
       <input
-        onChange={Handleinput}
-        onFocus={() => document.querySelector(".box")?.classList.remove("hidden")}
-        onBlur={() => document.querySelector(".box")?.classList.add("hidden")}
-        onInput={() => document.querySelector(".box")?.classList.remove("hidden")}
-        type="text"
-        placeholder="Search here..."
-        className="bg-white/10 text-white border border-white/20
+         onChange={Handleinput}
+         onFocus={() => setShowBox(true)}
+         onBlur={() => setTimeout(() => setShowBox(false), 200)} 
+         type="text"
+         placeholder="Search here..."
+         className="bg-white/10 text-white border border-white/20
                    rounded-xl px-3 py-2 outline-none
                    focus:ring-2 focus:ring-fuchsia-500 
                    shadow-inner placeholder:text-white/50"
       />
 
       {/* Search Results Dropdown (your existing logic, only styled) */}
-      <div className="box hidden absolute left-0 mt-2 w-60 
-                      bg-black/80 backdrop-blur-lg 
-                      border border-white/10 rounded-lg 
-                      max-h-60 overflow-y-auto shadow-xl">
-        {inputD.map((val, idx) => (
-          <div
-            key={idx}
-            className="px-4 py-2 text-white cursor-pointer 
-                       hover:bg-white/10 transition"
-          >
-            {val.name}
-          </div>
-        ))}
-      </div>
+      {showBox && (
+       <div className="absolute left-0 mt-2 w-60 
+                       bg-black/80 backdrop-blur-lg 
+                       border border-white/10 rounded-lg 
+                       max-h-60 overflow-y-auto shadow-xl">
+         {inputD.length > 0 ? (
+           inputD.map((val, idx) => (
+             <div
+               key={idx}
+               className="px-4 py-2 text-white cursor-pointer 
+                          hover:bg-white/10 transition"
+             >
+               {val.name}
+             </div>
+           ))
+         ) : (
+           <div className="px-4 py-2 text-white/50">No results</div>
+         )}
+       </div>
+     )}
     </div>
   </div>
 
