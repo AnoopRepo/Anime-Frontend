@@ -3,16 +3,18 @@ import axios from 'axios'
 
 const Contact = () => {
   const BACK_URL = import.meta.env.VITE_BACK_URL;
-  const [emailService, setEmailService] = useState([])
+  const [emailService, setEmailService] = useState({})
 
   const emailCall=async function(){
     let email=document.querySelector("#email");
     let name=document.querySelector("#name");
     let message=document.querySelector("#message");
+    
     setEmailService({name:name.value ,email:email.value , message : message.value})
     console.log(emailService);
    try {
-     const sendData=await axios.post("http://localhost:8080/Admin/email",emailService)
+     const sendData=await axios.post(`${BACK_URL}/Admin/email`,emailService)
+    //  const sendData=await axios.post("http://localhost:8080/Admin/email",emailService)
    } catch (error) {
     alert(error);
     console.log(error);
