@@ -24,6 +24,7 @@ const Navbar = () => {
 
           try {
             // const data  = await axios.get(`http://localhost:8080/Admin/${query}`);
+            
             const data  = await axios.get(`${BACK_URL}/${query}`);
             setInputD(data.data);
           } catch (err) {
